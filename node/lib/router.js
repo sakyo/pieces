@@ -16,10 +16,6 @@ module.exports = function(app, options) {
     let root = options.root;
     let logger = app.logger || console;
 
-    app.use(rewrite('/', '/index.html'));
-    route.get('/index.html', function *(next) {
-        this.body = CONFIGS.SERVER_CONFIG.name;
-    });
     ls(root).forEach(function(filePath) {
         let exportFuncs = require(filePath);
         let pathRegexp = formatPath(filePath, root, wildcard);
